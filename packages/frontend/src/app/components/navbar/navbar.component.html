@@ -1,0 +1,58 @@
+<mat-toolbar>
+  <div fxLayout="row" fxFill fxLayoutAlign="space-between center">
+
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <span><a routerLink="/" id="calendarNav">Calendar</a></span>
+      <mat-nav-list fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-list-item class="nav-item">
+          <a (click)="openCreateCalendarModal()" class="nav-link">Create</a>
+        </mat-list-item>
+        <mat-list-item class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" id="homeBtn" class="nav-link">Home</a>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <ng-container *ngIf="isLogged(); else loggedOut">
+        <span>Welcome, {{ userEmail }}</span>
+        <button mat-button (click)="logout()">Log out</button>
+      </ng-container>
+      <ng-template #loggedOut class="nav-item">
+        <mat-nav-list fxLayout="row">
+          <mat-list-item>
+            <button mat-button routerLink="/registration" routerLinkActive="active">Register</button>
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-button routerLink="/login" routerLinkActive="active">Log in</button>
+          </mat-list-item>
+        </mat-nav-list>
+      </ng-template>
+    </div>
+
+  </div>
+</mat-toolbar>
+
+
+<ng-template #createCalendarModal let-modal>
+  <div class="modal-content full-width-modal">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Create Calendar</h5>
+    </div>
+    <div class="modal-body">
+      <form class="full-width-form">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Calendar Name</mat-label>
+          <input matInput type="text" id="calendarName" name="calendarName" [(ngModel)]="calendarName" required>
+          <mat-error *ngIf="!calendarName">Fill in the input!</mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Close</button>
+      <button type="button" class="btn btn-primary" (click)="createCalendar(modal)">Create</button>
+    </div>
+  </div>
+</ng-template>
+
+

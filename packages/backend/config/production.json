@@ -1,0 +1,16 @@
+{
+  "formatLogsForKibana": true,
+  "db": {
+    "database": "calendar",
+    "dialect": "mysql",
+    "host": "calendar-db",
+    "port": 3306
+  },
+  "mail": {
+    "from": "Calendar <metricitytest@gmail.com>"
+  },
+  "redis": {
+    "host": "calendar-redis",
+    "port": "6379"
+  }
+}

@@ -1,0 +1,14 @@
+**/node_modules/
+**/.git
+**/README.md
+**/LICENSE
+**/.vscode
+**/npm-debug.log
+**/coverage
+#**/.env
+**/,editorconfig
+**/.aws
+**/dist
+**/.angular
+# The **/ means it will take any file with the associated name and will stop them withint the root
+# folder as well as any subfolder

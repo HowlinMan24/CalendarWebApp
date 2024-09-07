@@ -1,0 +1,37 @@
+
+mat-toolbar {
+  padding: 16px;
+  background: cornflowerblue;
+  background: radial-gradient(circle, cornflowerblue 0%, #94bbe9 100%);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-nav-list {
+  display: flex;
+}
+
+mat-list-item {
+  margin-left: 16px;
+}
+
+.custom-footer {
+  background-color: #f5f5f5;
+  padding: 16px;
+  margin: 16px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.nav-link {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.875rem;
+  margin-left: 16px;
+}
+
+span {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.875rem;
+}
+

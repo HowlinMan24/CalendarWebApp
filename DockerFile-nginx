@@ -1,0 +1,48 @@
+FROM node:20
+WORKDIR /usr/src/app
+
+# Copy package.json from the root directory
+COPY package*.json ./
+COPY lerna.json .
+
+RUN mkdir ./packages
+RUN mkdir ./packages/shared
+RUN mkdir ./packages/frontend
+
+COPY packages/shared/package.json ./packages/shared/
+COPY packages/shared/tsconfig.json ./packages/shared
+
+
+COPY packages/frontend/package.json ./packages/frontend
+COPY packages/frontend/tsconfig.json ./packages/frontend
+COPY packages/frontend/tsconfig.app.json ./packages/frontend
+COPY packages/frontend/angular.json ./packages/frontend
+
+RUN npm install
+
+COPY packages/shared/src ./packages/shared/src
+COPY packages/frontend/src ./packages/frontend/src
+COPY packages/frontend/public ./packages/frontend/public
+
+# make the ARG flobal for docker
+ARG environment
+
+WORKDIR /usr/src/app/packages/frontend
+
+# Build the application
+RUN npm run build-${environment}
+
+FROM nginx
+
+# Install certbot to generate certificates
+RUN apt update
+RUN apt install certbot -y python3-certbot-nginx
+RUN apt install -y vim
+
+WORKDIR /usr/src/app
+
+# Certificates for nginx
+COPY nginx/initial-letsencrypt-files/ /etc/letsencrypt/
+
+COPY nginx/conf/production/conf.d/default.conf /etc/nginx/conf.d/
+COPY --from=0 /usr/src/app/packages/frontend/dist/calendar/browser /var/www/calendar/

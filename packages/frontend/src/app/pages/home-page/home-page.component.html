@@ -1,0 +1,59 @@
+<div class="full-height">
+
+  <app-navbar></app-navbar>
+
+  <div class="main-content">
+    <mat-card class="calendars-card">
+      <mat-card-content>
+        <ng-container *ngIf="calendars | async as calendars">
+          <div fxLayout="row wrap">
+            <div class="card-body" fxFlex="33" fxFlex.lt-md="50" fxFlex.lt-sm="100"  *ngFor="let calendar of calendars">
+              <ng-container>
+                <mat-card-content>
+                  <mat-card-header fxLayout="column" fxLayoutAlign="center center">
+                    <ng-container>
+                      <span>
+                          Calendar name: <a mat-button [routerLink]="['/calendar', calendar.id]" routerLinkActive="active">{{ calendar.name }}</a>
+                      </span>
+                    </ng-container>
+                    <ng-container>
+                      <button mat-button (click)="getLinkForCalendar(calendar.id)">Get link for calendar</button>
+                      <button mat-button color="warn" (click)="deleteSelectedCalendar(calendar.id)">Remove Calendar</button>
+                    </ng-container>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <app-input-dates [shared]="true" [displayHomeCalendarId]="calendar.id"></app-input-dates>
+                  </mat-card-content>
+                </mat-card-content>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <app-footer></app-footer>
+
+</div>
+
+<ng-template #myModal let-modal>
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h3 mat-dialog-title class="text-center">Calendar Link</h3>
+    </div>
+    <div class="modal-body">
+      <p class="link-text text-center">
+        <a href="http://localhost:4200/calendar-shared/{{ calendarToken }}" target="_blank">
+          http://localhost:4200/calendar-shared/{{ calendarToken }}
+        </a>
+      </p>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="modal.dismiss('Close click')">Close</button>
+  </mat-dialog-actions>
+</ng-template>
+
+
+

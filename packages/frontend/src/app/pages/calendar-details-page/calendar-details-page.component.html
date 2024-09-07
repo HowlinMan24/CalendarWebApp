@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+
+<div class="content-container">
+  <mat-card class="calendar-card">
+    <mat-card-header>
+      <mat-card-title class="title">Calendar</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-calendar [reloadEvents]="reloadEvents$"></app-calendar>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="input-card">
+    <mat-card-header>
+      <mat-card-title class="title">Input Events</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-input-dates (eventsChanged)="reloadEvents$.next(true)"></app-input-dates>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,77 @@
+<mat-card class="event-card" *ngIf="!shared">
+  <mat-card-header>
+    <mat-card-title>Add Event</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="eventDateCreationForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Title</mat-label>
+        <input matInput id="title" formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput id="description" formControlName="description" rows="4"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Status</mat-label>
+        <mat-select id="busyStatus" formControlName="busyStatus">
+          <mat-option value="" disabled>Select a status</mat-option>
+          <mat-option value="BUSY">BUSY</mat-option>
+          <mat-option value="FREE">FREE</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Date</mat-label>
+        <input matInput type="date" id="date" formControlName="date"/>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit">Add Event</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="events-table-card">
+
+  <mat-card-header>
+    <mat-card-title>Event List</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-table *ngIf="items | async as events" [dataSource]="events">
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{ item.date | date: 'longDate' }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{ item.title }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <button mat-icon-button color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteItem(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+  </mat-card-content>
+</mat-card>

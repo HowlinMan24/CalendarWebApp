@@ -1,0 +1,20 @@
+FROM redis:latest
+
+# CONFIG
+COPY packages/backend/config/redis/redis.conf /redis_conf/redis.conf
+COPY packages/backend/config/redis/redis.service /etc/systemd/system/redis.service
+
+# Define mountable directories.
+VOLUME ["/data"]
+
+# Define working directory.
+WORKDIR /data
+
+# Define default command.
+
+ARG redis_pwd
+ENV ENV_REDIS_PWD ${redis_pwd}
+CMD redis-server  "/redis_conf/redis.conf" --requirepass ${ENV_REDIS_PWD}
+
+# Expose ports.
+EXPOSE 6379

@@ -1,0 +1,49 @@
+#homeBtn {
+  text-decoration: none;
+  color: black;
+}
+
+.full-width-modal {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.full-width-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.nav-item {
+  flex: auto;
+}
+
+.nav-link {
+  white-space: nowrap;
+  text-align: center;
+  padding: 8px 16px;
+}
+
+mat-list-item {
+  justify-content: center;
+}
+
+#calendarNav {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-toolbar {
+  background: cornflowerblue;
+  background: radial-gradient(circle, cornflowerblue 0%, #94bbe9 100%);
+}

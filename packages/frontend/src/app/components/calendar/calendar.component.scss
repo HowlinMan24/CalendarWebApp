@@ -1,0 +1,28 @@
+.calendar-card {
+  margin: 20px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #eeaeca;
+  background: radial-gradient(circle, #eeaeca 0%, #94bbe9 100%);
+}

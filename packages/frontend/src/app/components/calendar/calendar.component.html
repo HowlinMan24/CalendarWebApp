@@ -1,0 +1,15 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+  <mat-card class="calendar-card" fxFlex="100%">
+    <mat-card-header>
+      <mat-card-title >
+        <div class="calendarHeader">
+          <span>Calendar name: </span>
+          <div class="title" *ngIf="calendar | async as c">{{ c.name }}</div>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="calendar"></div>
+    </mat-card-content>
+  </mat-card>
+</div>
